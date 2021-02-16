@@ -4,6 +4,7 @@ from django.db import models
 from django.utils import timezone
 
 tz = timezone.get_default_timezone()
+
 # Create your models here.
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
@@ -32,4 +33,4 @@ class Choice(models.Model):
 
 class Vote(models.Model):
     choice = models.ForeignKey(Choice,related_name= 'votes', on_delete=models.CASCADE)
-    time = models.DateTimeField('time', blank=True,default=timezone.now())
+    time = models.DateTimeField('time', blank=True,default=timezone.now)
