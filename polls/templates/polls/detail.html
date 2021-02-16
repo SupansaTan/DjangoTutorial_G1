@@ -1,14 +1,52 @@
-<h1>{{ question.question_text }}</h1>
+{% extends 'polls/base.html' %}
+{% load static %}
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% block title %}Polls{% endblock %}
 
-<form action="{% url 'polls:vote' question.id %}" method="post">
-{% csrf_token %}
-{% for choice in question.choice_set.all %}
-    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-{% endfor %}
-<input type="submit" value="Vote">
-</form>
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/detail.css' %}">
+{% endblock %}
 
-<a href={% url 'polls:results' question.id %}> view result </a>
+{% block content %}
+<main>
+    <div class="inner-wrapper lrg">
+        <!-- question -->
+        <div class="question-head">
+            <h1>{{ question.question_text }}</h1>
+        </div>
+
+        <!-- navigation to result page -->
+        <div class="navigate">
+            <a href={% url 'polls:results' question.id %} class="result">
+                <input class="btn" type="submit" value="View Result">
+            </a>
+        </div>
+
+        <!-- choices -->
+        <form action="{% url 'polls:vote' question.id %}" method="post">
+            {% csrf_token %}
+            <div class="choice">
+
+                {% for choice in question.choice_set.all %}
+                <div class="choice-wrapper">
+                    <input type="checkbox" class="btn-check" id="choice{{ forloop.counter }}" name="choice" value="{{ choice.id }}" autocomplete="off"/>
+                    <label class="btn" for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
+                </div>
+                {% endfor %}
+
+            </div>
+            <div class="submit">
+                <input class="btn" type="submit" value="Submit vote">
+            </div>
+        </form>
+
+        <!-- not select a choice -->
+        {% if error_message %}
+        <div class="message">
+            <p>{{ error_message }}</p>
+        </div>
+        {% endif %}
+    </div>
+</main>
+
+{% endblock %}

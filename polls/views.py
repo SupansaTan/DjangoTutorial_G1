@@ -36,6 +36,7 @@ class ResultsView(generic.DetailView):
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
+    
     try:
         choice_id = request.POST['choice']
         selected_choice = question.choice_set.get(pk=choice_id)
@@ -46,8 +47,6 @@ def vote(request, question_id):
             'error_message': "You didn't select a choice.",
         })
     else:
-        
-
         selected_choice.votes_score += 1
         selected_choice.save()
 
