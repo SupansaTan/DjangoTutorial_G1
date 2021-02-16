@@ -3,6 +3,7 @@ import datetime
 from django.db import models
 from django.utils import timezone
 
+tz = timezone.get_default_timezone()
 # Create your models here.
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
@@ -26,7 +27,7 @@ class Choice(models.Model):
     
     def latest_vote_time(self):
         latest_vote = self.votes.latest('time')
-        latest_time = latest_vote.time.strftime("%d/%m/%Y, %H:%M:%S")
+        latest_time = latest_vote.time.astimezone(tz).strftime("%d/%m/%Y, %H:%M:%S")
         return latest_time
 
 class Vote(models.Model):
