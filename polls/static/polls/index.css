@@ -1,0 +1,87 @@
+body {
+    background-color: #fafafa;
+    color:#2D2D2D;
+    margin:0;
+	padding:0;
+    transition: background-color 0.5s ease;
+    font-family: 'Poppins', 'Mitr', sans-serif;
+}
+
+main {
+	float: left;
+	width: 100%;
+	padding: 100px 0px;
+}
+
+.inner-wrapper {
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main .inner-wrapper .page-wrapper {
+    float: left;
+    width: 100%;
+}
+
+/* heading */
+header {
+    float: left;
+    width: 100%;
+}
+
+/* question list */
+.question-list {
+    width: 100%;
+    float: left;
+}
+
+.question-list .item-wrapper {
+	margin-bottom: 50px;
+    float: left;
+    width: 100%;
+    position: relative;
+	transition: transform 0.5s ease;
+}
+
+.question-list .item-wrapper:last-child {
+    margin-bottom: 0px;
+}
+
+.question-list .item-wrapper:hover a.item {
+	box-shadow: 0px 10px 44px 10px rgb(233, 235, 243);
+}
+
+.question-list .item-wrapper:hover {
+	transform: translateY(-5px);
+}
+  
+.question-list a.item {
+    float: left;
+    width: 100%;
+    background: #FFFFFF;
+    box-shadow: 0px 7px 14px rgba(0, 0, 0, 0.07);
+    border-radius: 10px;
+    padding: 30px 45px 30px 45px;
+    position: relative;
+    transition: box-shadow 0.5s ease;
+}
+
+.question-list a.item h2 {
+	float: left;
+	width: 100%;
+	padding: 5px 60px 5px 0px;
+    font-size: 36px;
+	color: #333;
+	line-height: 45px;
+}
+
+/* no qusetion */
+.question-list p {
+	float: left;
+	width: 100%;
+	padding: 10px 60px 10px 0px;
+    font-size: 30px;
+	color: #333;
+	line-height: 30px;
+}
