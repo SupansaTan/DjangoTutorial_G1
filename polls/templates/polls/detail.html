@@ -35,8 +35,8 @@
                 {% endfor %}
 
             </div>
-            <div class="submit">
-                <input class="btn" type="submit" value="Submit vote">
+            <div class="submit mb-2">
+                <input class="btn" id="submit-btn" type="submit" value="Submit vote">
             </div>
         </form>
 
@@ -49,4 +49,10 @@
     </div>
 </main>
 
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $('#submit-btn').css({'height':'60px', 'font-size':'20px'});
+    </script>
 {% endblock %}

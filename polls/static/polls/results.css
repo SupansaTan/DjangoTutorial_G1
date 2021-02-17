@@ -25,30 +25,19 @@ main {
     width: 100%;
 }
 
-/* navigation to result page */
-.navigate input {
-    position: absolute;
-    right: 30%;
-    color: white;
-    font-weight: 500;
-    border-radius: 20px;
-    background-color: #4299FE;
-}
-
 /* choice */
 .choice .choice-wrapper {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     float: left;
     width: 100%;
     position: relative;
 	transition: transform 0.5s ease;
 }
 
-.choice-wrapper label {
+.choice-wrapper {
     float: left;
     width: 90%;
     color: #333;
-    font-size: 25px;
     background: #FFFFFF;
     border: none;
     text-decoration: none;
@@ -56,28 +45,38 @@ main {
     font-weight: 500;
     box-shadow: 0px 7px 14px rgba(0, 0, 0, 0.07);
     border-radius: 10px;
-    padding: 20px 10px 20px 45px;
+    padding: 20px 30px 5px 45px;
     position: relative;
     transition: box-shadow 0.5s ease;
-    line-height: 45px;
 }
 
-.choice-wrapper label:hover {
-	box-shadow: 0px 10px 44px 10px rgb(233, 235, 243);
+.result-heading .name {
+    font-size: 30px;
+    position: absolute;
+    float: left;
 }
 
-/* submit */
-.submit input {
-    border:none;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    color: white;
-    font-weight: 500;
-    background-color: #40DB7A;
+.result-heading .percent {
+    font-size: 25px;
+    position: absolute;
+    float: right;
 }
 
-/* error message */
-.message {
-    color: red;
+.votes-number {
+    margin: 10px;
+    font-size: 20px;
+} 
+
+.progress-bar {
+    margin: 10px;
+    height: 8px;
+    background-color: blue;
+    border-radius: 50px;
+    transition: width 0.8s ease;
+}
+
+.choice-wrapper .lasttime-vote {
+    color: gray;
+    float: right;
+    padding-right: 10px;
 }

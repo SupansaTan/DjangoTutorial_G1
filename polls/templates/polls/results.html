@@ -1,11 +1,49 @@
-<h1>{{ question.question_text }}</h1>
+{% extends 'polls/base.html' %}
+{% load static %}
 
-<ul>
-{% for choice in question.choice_set.all %}
-    <li>
-        {{ choice.choice_text }} ---- {{ choice.votes_score }} vote{{ choice.votes_score|pluralize }} <i> {{choice.latest_vote_time}} </i>
-    </li>
-{% endfor %}
-</ul>
+{% block title %}Polls{% endblock %}
 
-<a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/results.css' %}">
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="inner-wrapper lrg">
+        <!-- question -->
+        <div class="question-head">
+            <h1>{{ question.question_text }}</h1>
+        </div>
+
+        <!-- navigation to result page -->
+        <div class="navigate">
+            <a href={% url 'polls:detail' question.id %} class="result">
+                <input class="btn" type="submit" value="Vote Again?">
+            </a>
+        </div>
+
+        <!-- choices -->
+        <div class="choice">
+
+            {% for choice in question.choice_set.all %}
+            <div class="choice-wrapper">
+                <div class="result-heading">
+                    <h2 class="name">{{ choice.choice_text }}</h2>
+                    <p class="percent">{{ choice.get_percent }}%</p>
+                </div>
+                <div class="result-bar">
+                    <div class="progress-bar" style="width: {{ choice.get_percent }}%;"></div>
+                </div>
+                <div class="votes-number">
+                    <p>{{ choice.votes_score }} vote{{ choice.votes_score|pluralize }}</p>
+                </div>
+                <div class="lasttime-vote">
+                    <p>Last vote time : {{choice.latest_vote_time}}</p>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</main>
+{% endblock %}
