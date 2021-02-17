@@ -22,6 +22,13 @@
             </a>
         </div>
 
+        <!-- navigation to question list page -->
+        <div class="navigate">
+            <a href={% url 'polls:index' %} class="previous-btn">
+                <button class="btn"><i class="arrowleft"></i></button>
+            </a>
+        </div>
+
         <!-- choices -->
         <form action="{% url 'polls:vote' question.id %}" method="post">
             {% csrf_token %}

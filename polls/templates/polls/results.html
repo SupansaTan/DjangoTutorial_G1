@@ -15,10 +15,10 @@
             <h1>{{ question.question_text }}</h1>
         </div>
 
-        <!-- navigation to result page -->
+        <!-- navigation to vote page -->
         <div class="navigate">
-            <a href={% url 'polls:detail' question.id %} class="result">
-                <input class="btn" type="submit" value="Vote Again?">
+            <a href={% url 'polls:detail' question.id %} class="previous-btn">
+                <button class="btn"><i class="arrowleft"></i> Back to vote this question</button>
             </a>
         </div>
 

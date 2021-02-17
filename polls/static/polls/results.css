@@ -19,6 +19,25 @@ main {
     margin-right: auto;
 }
 
+/* button vote again */
+.navigate button {
+    position: absolute;
+    right: 25%;
+    border-radius: 50px;
+    background-color: #41dd7d;
+    color: black;
+}
+
+.arrowleft {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+  
+
 /* question */
 .question-head h1 {
     float: left;
@@ -35,48 +54,41 @@ main {
 }
 
 .choice-wrapper {
-    float: left;
-    width: 90%;
     color: #333;
     background: #FFFFFF;
     border: none;
     text-decoration: none;
-    text-align: left;
     font-weight: 500;
     box-shadow: 0px 7px 14px rgba(0, 0, 0, 0.07);
     border-radius: 10px;
-    padding: 20px 30px 5px 45px;
-    position: relative;
-    transition: box-shadow 0.5s ease;
+    padding: 20px 30px 5px 30px;
 }
 
 .result-heading .name {
     font-size: 30px;
-    position: absolute;
-    float: left;
 }
 
 .result-heading .percent {
     font-size: 25px;
     position: absolute;
-    float: right;
+    margin-top: -30px;
+    right: 40px;
 }
 
 .votes-number {
-    margin: 10px;
-    font-size: 20px;
+    font-size: 18px;
 } 
 
 .progress-bar {
-    margin: 10px;
     height: 8px;
     background-color: blue;
     border-radius: 50px;
-    transition: width 0.8s ease;
+    margin-top: 20px;
 }
 
 .choice-wrapper .lasttime-vote {
     color: gray;
     float: right;
-    padding-right: 10px;
+    display: inline;
+    right: 20px;
 }

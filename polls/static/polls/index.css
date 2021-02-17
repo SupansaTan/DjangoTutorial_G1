@@ -37,7 +37,7 @@ header {
 }
 
 .question-list .item-wrapper {
-	margin-bottom: 50px;
+	margin-bottom: 30px;
     float: left;
     width: 100%;
     position: relative;
@@ -76,7 +76,7 @@ header {
 	line-height: 45px;
 }
 
-/* no qusetion */
+/* no question */
 .question-list p {
 	float: left;
 	width: 100%;
