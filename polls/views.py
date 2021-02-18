@@ -47,12 +47,15 @@ def vote(request, question_id):
             'error_message': "You didn't select a choice.",
         })
     else:
+        # add score of that choice
         selected_choice.votes_score += 1
         selected_choice.save()
 
-        uservote = Vote()
-        uservote.choice = selected_choice
-        uservote.save()
+        # add vote time when user submitted vote
+        userVote = Vote()
+        userVote.choice = selected_choice
+        userVote.save()
+
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
