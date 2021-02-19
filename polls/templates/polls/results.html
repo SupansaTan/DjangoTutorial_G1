@@ -18,8 +18,12 @@
         <!-- navigation to vote page -->
         <div class="navigate">
             <a href={% url 'polls:detail' question.id %} class="previous-btn">
-                <button class="btn"><i class="arrowleft"></i> Back to vote this question</button>
+                <button class="btn"><i class="arrowleft"></i></button>
             </a>
+        </div>
+
+        <div class="sort-btn">
+            <button class="btn" onclick="sortChoices()"><i class="arrowup"></i>Sort Votes</button>
         </div>
 
         <!-- choices -->
@@ -34,8 +38,8 @@
                 <div class="result-bar">
                     <div class="progress-bar" style="width: {{ choice.get_percent }}%;"></div>
                 </div>
-                <div class="votes-number">
-                    <p>{{ choice.votes_score }} vote{{ choice.votes_score|pluralize }}</p>
+                <div id="scorediv" class="votes-number">
+                    <p id="score">{{ choice.votes_score }} vote{{ choice.votes_score|pluralize }}</p>
                 </div>
                 <div class="lasttime-vote">
                     <p>Last vote time : {{choice.latest_vote_time}}</p>
@@ -46,4 +50,8 @@
         </div>
     </div>
 </main>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'polls/js/results.js' %}"></script>
 {% endblock %}

@@ -22,9 +22,10 @@ main {
 /* button vote again */
 .navigate button {
     position: absolute;
-    right: 25%;
-    border-radius: 50px;
-    background-color: #41dd7d;
+    left: 5%;
+    height: 50px;
+    width: 50px;
+    background-color: #ebebeb;
     color: black;
 }
 
@@ -35,6 +36,15 @@ main {
     padding: 3px;
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
+}
+
+.arrowup {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
 }
   
 
