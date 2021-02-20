@@ -25,10 +25,13 @@
         <!-- sort button -->
         <div class="sort-btn d-grid gap-1 d-md-flex justify-content-md-end inline">
             <button type="button" class="btn me-md-1" onclick="sortVoteScore()">
-                <i id="arrow" class="arrowdown"></i>
+                <i id="arrow_votes" class="arrow down"></i>
                  Sort Votes
             </button>
-            <button type="button" class="btn">Sort Vote Time</button>
+            <button type="button" class="btn" onclick="sortLastVoteTime()">
+                <i id="arrow_voteTime" class="arrow down"></i>
+                Sort Vote Time
+            </button>
         </div>
 
         <!-- choices -->
