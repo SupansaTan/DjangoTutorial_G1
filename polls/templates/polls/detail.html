@@ -4,7 +4,7 @@
 {% block title %}Polls{% endblock %}
 
 {% block style %}
-<link rel="stylesheet" type="text/css" href="{% static 'polls/detail.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'polls/css/detail.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -36,8 +36,8 @@
 
                 {% for choice in question.choice_set.all %}
                 <div class="choice-wrapper">
-                    <input type="checkbox" class="btn-check" id="choice{{ forloop.counter }}" name="choice" value="{{ choice.id }}" autocomplete="off"/>
-                    <label class="btn" for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
+                    <input type="checkbox" class="btn-check" id="choice{{ forloop.counter }}" name="choice" value="{{ choice.id }}" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
                 </div>
                 {% endfor %}
 

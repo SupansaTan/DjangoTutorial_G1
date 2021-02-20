@@ -14,15 +14,23 @@ main {
 }
 
 .inner-wrapper {
-    width: 960px;
+    width: 60%;
     margin-left: auto;
     margin-right: auto;
 }
 
+.inline {
+    display: inline;
+}
+
+.question-head h1 {
+    margin-left: 6%;
+}
+
 /* button vote again */
 .navigate button {
-    position: absolute;
-    left: 5%;
+    position: relative;
+    float: left;
     height: 50px;
     width: 50px;
     background-color: #ebebeb;
@@ -38,27 +46,38 @@ main {
     -webkit-transform: rotate(135deg);
 }
 
+/* sort button */
 .arrowup {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}
+
+.arrowdown {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+#arrow {
     border: solid black;
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 3px;
-    transform: rotate(-135deg);
-    -webkit-transform: rotate(-135deg);
+    margin: 0px 5px 0px 5px;
+    vertical-align: middle;
+    display: inline-block;
 }
-  
 
-/* question */
-.question-head h1 {
-    float: left;
-    width: 100%;
+.sort-btn button {
+    background-color: #ebebeb;
+    position: relative;
+    right: 4%;
 }
 
 /* choice */
 .choice .choice-wrapper {
     margin-bottom: 30px;
-    float: left;
-    width: 100%;
+    left: 6%;
+    width: 90%;
     position: relative;
 	transition: transform 0.5s ease;
 }
@@ -71,7 +90,8 @@ main {
     font-weight: 500;
     box-shadow: 0px 7px 14px rgba(0, 0, 0, 0.07);
     border-radius: 10px;
-    padding: 20px 30px 5px 30px;
+    padding: 1rem 30px 2rem 30px;
+    margin-top: 1.5rem;
 }
 
 .result-heading .name {
@@ -96,7 +116,7 @@ main {
     margin-top: 20px;
 }
 
-.choice-wrapper .lasttime-vote {
+.lasttime-vote {
     color: gray;
     float: right;
     display: inline;

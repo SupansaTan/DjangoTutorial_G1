@@ -4,26 +4,31 @@
 {% block title %}Polls{% endblock %}
 
 {% block style %}
-<link rel="stylesheet" type="text/css" href="{% static 'polls/results.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'polls/css/results.css' %}">
 {% endblock %}
 
 {% block content %}
 <main>
     <div class="inner-wrapper lrg">
-        <!-- question -->
-        <div class="question-head">
-            <h1>{{ question.question_text }}</h1>
-        </div>
-
-        <!-- navigation to vote page -->
-        <div class="navigate">
+        <!-- previous page button -->
+        <div class="navigate inline">
             <a href={% url 'polls:detail' question.id %} class="previous-btn">
                 <button class="btn"><i class="arrowleft"></i></button>
             </a>
         </div>
 
-        <div class="sort-btn">
-            <button class="btn" onclick="sortChoices()"><i class="arrowup"></i>Sort Votes</button>
+        <!-- question -->
+        <div class="question-head inline">
+            <h1>{{ question.question_text }}</h1>
+        </div>
+
+        <!-- sort button -->
+        <div class="sort-btn d-grid gap-1 d-md-flex justify-content-md-end inline">
+            <button type="button" class="btn me-md-1" onclick="sortVoteScore()">
+                <i id="arrow" class="arrowdown"></i>
+                 Sort Votes
+            </button>
+            <button type="button" class="btn">Sort Vote Time</button>
         </div>
 
         <!-- choices -->
