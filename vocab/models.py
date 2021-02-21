@@ -1,7 +1,6 @@
-import datetime
-
 from django.db import models
 from django.utils import timezone
+import datetime
 
 class Vocab(models.Model):
     vocab_text = models.CharField(max_length=200)
