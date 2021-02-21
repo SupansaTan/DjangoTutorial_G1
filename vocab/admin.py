@@ -1,5 +1,5 @@
 from django.contrib import admin
 
-from .models import Vocabs
+from .models import Vocab
 
-admin.site.register(Vocabs)
+admin.site.register(Vocab)

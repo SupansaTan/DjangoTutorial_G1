@@ -1,10 +1,16 @@
-<h1>Vocab</h1>
-{% if latest_vocabs_list %}
-    <ul>
-    {% for vocabs in latest_vocabs_list %}
-    <li><a href="{% url 'vocab:detail' vocabs.id %}">{{ vocabs.vocabs_text }}</a></li>
+<h1>Vocabulary</h1>
+<a href="{% url 'vocab:add' %}">add_vocab</a>
+<table border = 1 >
+    <tr>
+        <th scope = 'col'>id</th>
+        <th scope = 'col'>vocab</th>
+        <th scope = 'col'>means</th>
+    </tr>
+    {% for vocabs in vocabulary%}
+    <tr>
+        <th scope = 'col'>{{vocabs.id}}</th>
+        <td>{{vocabs.vocabs_text}}</td>
+        <td>{{vocabs.means}}</td>
+    </tr>
     {% endfor %}
-    </ul>
-{% else %}
-    <p>No vocab are available.</p>
-{% endif %}
+</table>
