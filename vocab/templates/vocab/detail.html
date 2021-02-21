@@ -1,0 +1,6 @@
+<h1>{{ vocabs.vocabs }}</h1>
+<ul>
+{% for means in vocabs.means_set.all %}
+    <li>{{ means.means_text }}</li>
+{% endfor %}
+</ul>

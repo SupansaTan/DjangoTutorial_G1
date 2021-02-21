@@ -1,0 +1,10 @@
+<h1>Vocab</h1>
+{% if latest_vocabs_list %}
+    <ul>
+    {% for vocabs in latest_vocabs_list %}
+    <li><a href="{% url 'vocab:detail' vocabs.id %}">{{ vocabs.vocabs_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No vocab are available.</p>
+{% endif %}
