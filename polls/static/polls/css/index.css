@@ -14,7 +14,7 @@ main {
 }
 
 .inner-wrapper {
-    width: 960px;
+    width: 60%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -26,8 +26,34 @@ main .inner-wrapper .page-wrapper {
 
 /* heading */
 header {
-    float: left;
-    width: 100%;
+    margin-left: 6%;
+}
+
+/* sort button */
+.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    margin: 0px 5px 0px 5px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.sort-btn button {
+    background-color: #ebebeb;
+    position: relative;
+    right: 4%;
 }
 
 /* question list */
@@ -37,9 +63,9 @@ header {
 }
 
 .question-list .item-wrapper {
-	margin-bottom: 30px;
-    float: left;
-    width: 100%;
+    margin-bottom: 2rem;
+    margin-left: 6%;
+    width: 90%;
     position: relative;
 	transition: transform 0.5s ease;
 }
@@ -62,9 +88,10 @@ header {
     background: #FFFFFF;
     box-shadow: 0px 7px 14px rgba(0, 0, 0, 0.07);
     border-radius: 10px;
-    padding: 30px 45px 30px 45px;
+    padding: 2rem 2rem 2rem 2rem;
     position: relative;
     transition: box-shadow 0.5s ease;
+    margin-top: 1.5rem;
 }
 
 .question-list a.item h2 {
@@ -73,7 +100,7 @@ header {
 	padding: 5px 60px 5px 0px;
     font-size: 36px;
 	color: #333;
-	line-height: 45px;
+	line-height: 2rem;
 }
 
 /* no question */
