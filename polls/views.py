@@ -1,6 +1,5 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
-from django.utils.datastructures import MultiValueDictKeyError
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
@@ -35,27 +34,62 @@ class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
 
+# reverse sort variables
+reverseVotes = True;
+reverseVoteTime = True;
+
 def index(request):
-    button = request.GET.get('sort', False)
+    button = request.GET.get('sort', False) 
     
-    if button == 'votes':
-        sum_votes = []
-        question_id_sorted = []
+    if button == 'votes': # clicked button to sort by votes
+        global reverseVotes
+        question_list = []
+        question_sorted = []
         questions = Question.objects.all()
 
+        # sort questions by sum votes
         for question in questions:
-            question_obj = {'id':question.id, 'votes':question.get_sum_score()}
-            sum_votes.append(question_obj)
-        sum_votes =sorted(sum_votes, key=lambda question: question['votes'], reverse=True)
+            question_obj = {'question':question, 'votes':question.get_sum_score()} # get sum votes of each question
+            question_list.append(question_obj)
 
-        for question in sum_votes:
-            question_id_sorted.append(question['id'])
+        question_list = sorted(question_list, key=lambda question: question['votes'], reverse=reverseVotes)
 
-        votes_sort = questions.filter(id__in = question_id_sorted)
-        sorted(votes_sort, key=lambda i: question_id_sorted.index(i.pk))
+        for question_obj in question_list:
+            question_sorted.append(question_obj['question'])
+
+        # change next reverse sort
+        if reverseVotes:
+            reverseVotes = False # sort from lowest to highest votes
+        else:
+            reverseVotes = True # sort from highest to lowest votes 
 
         return render(request, 'polls/index.html', {
-            'latest_question_list': votes_sort
+            'latest_question_list': question_sorted
+        })
+
+    elif button == 'vote_time': # clicked button to sort by vote time
+        global reverseVoteTime
+        question_list = []
+        question_sorted = []
+        questions = Question.objects.all()
+       
+        for question in questions:
+            question_obj = {'question':question, 'votetime':question.get_latest_vote_time()} # get last vote time of each question
+            question_list.append(question_obj)
+
+        question_list = sorted(question_list, key=lambda question: question['votetime'], reverse=reverseVoteTime)
+        
+        for question_obj in question_list:
+            question_sorted.append(question_obj['question'])
+
+        # change next reverse sort
+        if reverseVoteTime:
+            reverseVoteTime = False # sort from oldest to latest vote time
+        else:
+            reverseVoteTime = True # sort from latest to oldest vote time
+
+        return render(request, 'polls/index.html', {
+            'latest_question_list': question_sorted
         })
 
     return render(request, 'polls/index.html', {
