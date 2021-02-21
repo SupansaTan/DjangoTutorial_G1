@@ -1,0 +1,50 @@
+body {
+    background-color: #fafafa;
+    color:#2D2D2D;
+    margin:0;
+	padding:0;
+    transition: background-color 0.5s ease;
+    font-family: 'Poppins', 'Mitr', sans-serif;
+}
+
+main {
+    float: left;
+	width: 100%;
+	padding: 100px 0px;
+}
+
+.container {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* heading */
+.heading h1 {
+    display: inline-block;
+}
+
+/* search */
+input.form-control {
+    background: none;
+}
+
+input.form-control:focus {
+    box-shadow: none;
+    background: none;
+}
+
+/* vocab recently added */
+h2 {
+    margin-top: 2rem;
+    font-size: 30px;
+}
+
+a.item {
+    text-decoration: none;
+    color: #2D2D2D;
+}
+
+h4 {
+    text-align: center;
+}

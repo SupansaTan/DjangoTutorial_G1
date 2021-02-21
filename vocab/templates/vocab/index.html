@@ -1,10 +1,57 @@
-<h1>Vocab</h1>
-{% if latest_vocabs_list %}
-    <ul>
-    {% for vocabs in latest_vocabs_list %}
-    <li><a href="{% url 'vocab:detail' vocabs.id %}">{{ vocabs.vocabs_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No vocab are available.</p>
-{% endif %}
+{% extends 'vocab/base.html' %}
+{% load static %}
+
+{% block title %}Vocabulary{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'vocab/css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="container">
+        <div class="heading">
+            <h1>Vocabulary</h1>
+        </div>
+
+        <div class="seach">
+            <form action="">
+                {% csrf_token %}
+                <div class="input-group bg-white mb-4 border rounded-pill p-1 shadow-sm mb-4">
+                    <div class="input-group">
+                        <input type="search" placeholder="Search" aria-describedby="button-addon1" class="form-control border-0">
+                        <div class="input-group-append border-0">
+                            <button id="button-addon1" type="submit" class="btn btn-link text-primary">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>  
+        </div>
+
+        <div class="vocab-list">
+            <h2>Recently added vocabulary</h2>
+            <div class="row">
+                {% if latest_vocab_list %}
+
+                    {% for vocab in latest_vocab_list %}
+                    <div class="col-sm-3">
+                        <a href="{% url 'vocab:detail' vocab.id %}" class="item" title="{{ vocab.vocab_text }}">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4>{{ vocab.vocab_text }}</h4>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+
+                {% else %}
+                    <p>No vocab are available.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

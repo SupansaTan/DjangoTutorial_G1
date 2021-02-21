@@ -3,15 +3,26 @@ import datetime
 from django.db import models
 from django.utils import timezone
 
-class Vocabs(models.Model):
-    vocabs_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
+class Vocab(models.Model):
+    vocab_text = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published', default=timezone.now)
+
     def __str__(self):
-        return self.vocabs_text
+        return self.vocab_text
+
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
-class Means(models.Model):
-    vocabs = models.ForeignKey(Vocabs, on_delete=models.CASCADE)
-    means_text = models.CharField(max_length=200)
+
+class Mean(models.Model):
+    vocab = models.ForeignKey(Vocab, on_delete=models.CASCADE)
+    means_text = models.CharField(max_length=400)
+
     def __str__(self):
         return self.means_text
+
+class Type(models.Model):
+    mean = models.ForeignKey(Mean, on_delete=models.CASCADE)
+    type = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.type

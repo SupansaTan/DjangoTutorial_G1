@@ -1,6 +1,17 @@
-<h1>{{ vocabs.vocabs }}</h1>
+{% extends 'vocab/base.html' %}
+{% load static %}
+
+{% block title %}Vocabulary{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'vocab/css/detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>{{ vocab.vocabs }}</h1>
 <ul>
-{% for means in vocabs.means_set.all %}
+{% for means in vocab.means_set.all %}
     <li>{{ means.means_text }}</li>
 {% endfor %}
 </ul>
+{% endblock %}
