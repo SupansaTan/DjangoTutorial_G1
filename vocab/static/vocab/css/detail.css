@@ -21,6 +21,7 @@ h1 {
 #temp-table {
     width: 50%;
     margin: auto;
+    font-size: 20px;
     border-radius: 10px;
     border-collapse: collapse;
     overflow: hidden;
@@ -46,4 +47,12 @@ h1 {
 
 #temp-table tr:nth-child(even) {
     background-color:#f8f8ff;
+}
+
+.column1 {
+    width: 30%;
+}
+
+.column2 {
+    width: 3%;
 }

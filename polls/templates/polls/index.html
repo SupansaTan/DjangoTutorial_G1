@@ -19,11 +19,11 @@
         <form action="{% url 'polls:index' %}" method="GET">
 
             <div class="sort-btn d-grid gap-1 d-md-flex justify-content-md-end inline">
-                <button type="submit" class="btn me-md-1" name="sort" value="votes">
+                <button type="submit" class="btn me-md-1" name="sort" value="votes" onclick="changeArrow('votes')">
                     <i id="arrow_votes" class="arrow down"></i>
                     Sort Votes
                 </button>
-                <button type="submit" class="btn" name="sort" value="vote_time">
+                <button type="submit" class="btn" name="sort" value="vote_time" onclick="changeArrow('vote_time')">
                     <i id="arrow_voteTime" class="arrow down"></i>
                     Sort Vote Time
                 </button>

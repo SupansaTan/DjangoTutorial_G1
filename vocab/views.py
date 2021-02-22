@@ -12,10 +12,10 @@ def detail(request, vocab_id):
     word = Vocab.objects.get(pk=vocab_id)
     word_type = word.mean_set.get(pk=vocab_id).type
     word_mean = word.mean_set.get(pk=vocab_id).means_text
-    vocabulary = [{'vocab_text':word.vocab_text, 'vocab_type':word_type, 'vocab_mean':word_mean}]
+    vocab_detail = [{'vocab_text':word.vocab_text, 'vocab_type':word_type, 'vocab_mean':word_mean}]
 
     return render(request, 'vocab/detail.html', {
-        'vocabulary': vocabulary,
+        'vocabulary': vocab_detail,
         'vocab': word
     })
 

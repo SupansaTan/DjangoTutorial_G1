@@ -19,9 +19,9 @@
 
         {% for vocab in vocabulary %}
         <tr>
-            <td class="column1">{ vocab_text }</td>
-            <td class="column2">{ vocab_type }</td>
-            <td class="column3">{ vocab_mean }</td>
+            <td class="column1">{{ vocab.vocab_text }}</td>
+            <td class="column2">{{ vocab.vocab_type }}</td>
+            <td class="column3">{{ vocab.vocab_mean }}</td>
         </tr>
         {% endfor %}
     </table>
