@@ -31,7 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'vocab.apps.VocabConfig',
     'polls.apps.PollsConfig',
     'vocab.apps.VocabConfig',
     'django.contrib.admin',

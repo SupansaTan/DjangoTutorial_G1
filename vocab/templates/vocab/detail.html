@@ -8,10 +8,22 @@
 {% endblock %}
 
 {% block content %}
-<h1>{{ vocab.vocabs }}</h1>
-<ul>
-{% for means in vocab.means_set.all %}
-    <li>{{ means.means_text }}</li>
-{% endfor %}
-</ul>
+<h1>{{ vocab.vocab_text }}</h1>
+<div class="table-container">
+    <table id="temp-table">
+        <tr>
+            <th class="column1">Vocab</th>
+            <th class="column2">Type</th>
+            <th class="column3">Meaning</th>
+        </tr>
+
+        {% for vocab in vocabulary %}
+        <tr>
+            <td class="column1">{ vocab_text }</td>
+            <td class="column2">{ vocab_type }</td>
+            <td class="column3">{ vocab_mean }</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
 {% endblock %}

@@ -14,14 +14,8 @@ class Vocab(models.Model):
 
 class Mean(models.Model):
     vocab = models.ForeignKey(Vocab, on_delete=models.CASCADE)
+    type = models.CharField(max_length=200)
     means_text = models.CharField(max_length=400)
 
     def __str__(self):
         return self.means_text
-
-class Type(models.Model):
-    mean = models.ForeignKey(Mean, on_delete=models.CASCADE)
-    type = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.type

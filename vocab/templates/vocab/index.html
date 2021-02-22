@@ -15,7 +15,7 @@
         </div>
 
         <div class="seach">
-            <form action="">
+            <form action="{% url 'vocab:index' %}" method="post">
                 {% csrf_token %}
                 <div class="input-group bg-white mb-4 border rounded-pill p-1 shadow-sm mb-4">
                     <div class="input-group">
