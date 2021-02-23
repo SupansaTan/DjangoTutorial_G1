@@ -1,12 +1,14 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
+from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
+import datetime
 
 from .models import Choice, Question, Vote
 
-
+tz = timezone.get_default_timezone()
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
@@ -34,15 +36,17 @@ class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
 
-# reverse sort variables
-reverseVotes = True;
-reverseVoteTime = True;
-
 def index(request):
-    button = request.GET.get('sort', False) 
-    
-    if button == 'votes': # clicked button to sort by votes
-        global reverseVotes
+    sort = request.GET.get('sort','default')
+    reverse = bool(int(request.GET.get('reverse',0))) # 0: reverse = true, 1: reverse = false
+
+    if sort == 'default': # when not sort
+        question_list = Question.objects.order_by('-pub_date')[:5]
+        return render(request, 'polls/index.html', {
+                'latest_question_list': question_list,
+        })
+
+    elif sort == 'votes': # clicked dropdown to sort by votes
         question_list = []
         question_sorted = []
         questions = Question.objects.all()
@@ -52,51 +56,37 @@ def index(request):
             question_obj = {'question':question, 'votes':question.get_sum_score()} # get sum votes of each question
             question_list.append(question_obj)
 
-        question_list = sorted(question_list, key=lambda question: question['votes'], reverse=reverseVotes)
+        question_list = sorted(question_list, key=lambda question: question['votes'], reverse=reverse)
 
         for question_obj in question_list:
             question_sorted.append(question_obj['question'])
-
-        # change next reverse sort
-        if reverseVotes:
-            reverseVotes = False # sort from lowest to highest votes
-        else:
-            reverseVotes = True # sort from highest to lowest votes 
 
         return render(request, 'polls/index.html', {
             'latest_question_list': question_sorted
         })
 
-    elif button == 'vote_time': # clicked button to sort by vote time
-        global reverseVoteTime
+    elif sort == 'vote_time': # clicked dropdown to sort by vote time
         question_list = []
         question_sorted = []
         questions = Question.objects.all()
-       
+
         for question in questions:
-            question_obj = {'question':question, 'votetime':question.get_latest_vote_time()} # get last vote time of each question
+            try:
+                question_obj = {'question':question, 'votetime':question.get_latest_vote_time()} # get last vote time of each question
+            except ObjectDoesNotExist:
+                question_obj = {'question':question, 'votetime':datetime.datetime(1970, 1, 1).astimezone(tz)}
+
             question_list.append(question_obj)
 
-        question_list = sorted(question_list, key=lambda question: question['votetime'], reverse=reverseVoteTime)
         
+        question_list = sorted(question_list, key=lambda question: question['votetime'], reverse=reverse)
+        print(question_list )
         for question_obj in question_list:
             question_sorted.append(question_obj['question'])
 
-        # change next reverse sort
-        if reverseVoteTime:
-            reverseVoteTime = False # sort from oldest to latest vote time
-        else:
-            reverseVoteTime = True # sort from latest to oldest vote time
-
         return render(request, 'polls/index.html', {
             'latest_question_list': question_sorted
-        })
-
-    return render(request, 'polls/index.html', {
-            'latest_question_list': Question.objects.filter(
-                pub_date__lte=timezone.now()
-            ).order_by('-pub_date')[:5]
-    })
+        })    
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)

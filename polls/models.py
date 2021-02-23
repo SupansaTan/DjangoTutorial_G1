@@ -48,8 +48,11 @@ class Choice(models.Model):
         return self.choice_text
     
     def latest_vote_time_obj(self): # object lastest vote time of each choice
-        latest_vote = self.votes.latest('time').time.astimezone(tz)
-        return latest_vote
+        if self.votes.exists():
+            latest_vote = self.votes.latest('time').time.astimezone(tz)
+            return latest_vote
+        return datetime.datetime(2000,1,1).astimezone(tz)
+       
 
     def latest_vote_time(self): # lastest vote time of each choice
         latest_vote = self.votes.latest('time')

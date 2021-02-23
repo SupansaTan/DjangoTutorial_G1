@@ -15,32 +15,29 @@
             <h1>Polls</h1>
         </header>
 
-        <!-- sort button -->
-        <form action="{% url 'polls:index' %}" method="GET">
-
-            <div class="sort-btn d-grid gap-1 d-md-flex justify-content-md-end inline">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <span class="caret"></span>
-                        Sort by Vote
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                        <li><a href="">Most Popular Vote</a></li>
-                        <li></li><a href="">Less Popular Vote</a></li>
-                    </ul>
-                </div>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <span class="caret"></span>
-                        Sort by Vote Time
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                        <li><a href="">Recently vote time</a></li>
-                        <li><a href="">Voted long time ago</a></li>
-                    </ul>
-                </div>
+        <!-- dropdown to sort -->
+        <div class="sort-dropdown d-grid gap-1 d-md-flex justify-content-md-end inline">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    Sort by Vote
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                    <li><a href="/polls/?sort=votes&reverse=1">Most Popular Vote</a></li>
+                    <li><a href="/polls/?sort=votes&reverse=0">Less Popular Vote</a></li>
+                </ul>
             </div>
-        </form>
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    Sort by Vote Time
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                    <li><a href="/polls/?sort=vote_time&reverse=1">Recently vote time</a></li>
+                    <li><a href="/polls/?sort=vote_time&reverse=0">Voted long time ago</a></li>
+                </ul>
+            </div>
+        </div>
 
         <div class="question-list">
             {% if latest_question_list %}
