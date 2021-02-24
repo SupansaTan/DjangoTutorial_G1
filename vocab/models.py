@@ -12,6 +12,12 @@ class Vocab(models.Model):
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 
+    def get_meaning(self):
+        return self.meaning.get(vocab=self.id).means_text
+
+    def get_type(self):
+        return self.meaning.get(vocab=self.id).type
+
 class Mean(models.Model):
     vocab = models.ForeignKey(Vocab, related_name='meaning', on_delete=models.CASCADE)
     type = models.CharField(max_length=200)

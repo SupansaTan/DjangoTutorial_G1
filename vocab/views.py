@@ -5,21 +5,24 @@ from django.urls import reverse
 from .models import Vocab, Mean
 
 def index(request):
-    latest_vocab_list = Vocab.objects.order_by('-pub_date')[:5]
+    latest_vocab_list = Vocab.objects.order_by('-pub_date')[:4]
     context = {'latest_vocab_list': latest_vocab_list}
     return render(request, 'vocab/index.html', context)
 
 def search(request):
     search_text = request.GET.get('search_box')  # set search_text value from tag input
-    vocab_text = Vocab.objects.filter(Q(vocab_text=search_text.lower())) # get vocabs from database
+    vocab_text = Vocab.objects.filter(Q(vocab_text__icontains=search_text.lower())) # get vocabs from database
 
-    if vocab_text.exists(): # if found vocab
-        vocab = vocab_text[0]
-        return HttpResponseRedirect(reverse('vocab:detail', args=(vocab.id,)))
+    if vocab_text.exists(): # if found vocab go to result page
+        vocab = list(vocab_text)
+        return render(request, 'vocab/result.html', {
+            'vocab_list': vocab,
+            'seach_text': search_text
+        })
     else:
         return render(request, 'vocab/index.html', {
         'error_message': f"'{search_text}' not found.",
-        'latest_vocab_list': Vocab.objects.order_by('-pub_date')[:5]
+        'latest_vocab_list': Vocab.objects.order_by('-pub_date')[:4]
     })
 
 def detail(request, vocab_id):
@@ -31,7 +34,7 @@ def detail(request, vocab_id):
     return render(request, 'vocab/detail.html', {
         'vocabulary': vocab_detail,
         'vocab': word
-    })
+    })  
 
 def addVocab(request):
     if request.method == 'GET':
@@ -44,10 +47,10 @@ def addVocab(request):
 
         if not Vocab.objects.filter(Q(vocab_text=word)).exists(): # if it is new word
             # create word and meaning
-            newWord = Vocab(vocab_text=word)
-            newMeaning = Mean(vocab=newWord, type=word_type, means_text=meaning)
-            newWord.save()
-            newMeaning.save()
+            create_word = Vocab(vocab_text=word)
+            create_meaning = Mean(vocab=create_word, type=word_type, means_text=meaning)
+            create_word.save()
+            create_meaning.save()
             return render(request,'vocab/add.html',{
                 'success': f"Successful ! '{word}' has been added."
             })
@@ -56,8 +59,8 @@ def addVocab(request):
             existsWord = Vocab.objects.get(vocab_text=word) # get word
 
             if not Mean.objects.filter(Q(vocab=existsWord) & Q(means_text=meaning)).exists(): # if not have meaning of this vocab
-                newMeaning = Mean(vocab=existsWord, type=word_type, means_text=meaning)
-                newMeaning.save()
+                create_meaning = Mean(vocab=existsWord, type=word_type, means_text=meaning)
+                create_meaning.save()
                 return render(request,'vocab/add.html',{
                     'success': f"Successful! '{word}' has been added."
                 })

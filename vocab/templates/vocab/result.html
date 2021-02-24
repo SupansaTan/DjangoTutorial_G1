@@ -1,0 +1,50 @@
+{% extends 'vocab/base.html' %}
+{% load static %}
+
+{% block title %}Vocabulary{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'vocab/css/detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'vocab:index' %}" data-abc="true">Vocabulary</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav me-5 mb-2 mb-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'vocab:index' %}" data-abc="true">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'vocab:add' %}" data-abc="true">Add vocab</a>
+            </li>
+        </ul>
+        <form class="d-inline w-50 d-flex" action="{% url 'vocab:search' %}" method="get">
+            <input class="form-control me-2" name="search_box" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-secondary" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+  
+<h1>Result : '{{ seach_text }}'</h1>
+<div class="table-container">
+    <table id="temp-table">
+        <tr>
+            <th class="column1">Vocab</th>
+            <th class="column2">Type</th>
+            <th class="column3">Meaning</th>
+        </tr>
+
+        {% for vocab in vocab_list %}
+        <tr>
+            <td class="column1">{{ vocab.vocab_text }}</td>
+            <td class="column2">{{ vocab.get_type }}</td>
+            <td class="column3">{{ vocab.get_meaning }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
