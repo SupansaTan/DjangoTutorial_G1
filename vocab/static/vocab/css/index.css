@@ -19,11 +19,6 @@ main {
     margin-right: auto;
 }
 
-/* heading */
-.heading h1 {
-    display: inline-block;
-}
-
 /* search */
 input.form-control {
     background: none;
@@ -40,7 +35,7 @@ input.form-control:focus {
 }
 
 /* vocab recently added */
-h2 {
+h3 {
     margin-top: 2rem;
     font-size: 30px;
 }
@@ -48,6 +43,14 @@ h2 {
 a.item {
     text-decoration: none;
     color: #2D2D2D;
+}
+
+.vocab-list {
+    margin-top: 5%;
+}
+
+.card {
+    margin: 10px 0px 10px 0px;
 }
 
 .card-body h4 {

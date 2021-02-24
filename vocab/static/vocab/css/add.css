@@ -1,0 +1,33 @@
+body {
+    background-color: #fafafa;
+    color:#2D2D2D;
+    margin:0;
+	padding:0;
+    transition: background-color 0.5s ease;
+    font-family: 'Poppins', 'Mitr', sans-serif;
+}
+
+/* alert box */
+.alert {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* heading */
+h1 {
+    margin: 20px;
+    text-align: center;
+}
+
+/* form */
+.card {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+label {
+    color: rgb(22, 91, 156);
+    font-weight: 500;
+}

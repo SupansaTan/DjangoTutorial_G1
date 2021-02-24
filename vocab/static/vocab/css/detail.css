@@ -7,17 +7,23 @@ body {
     font-family: 'Poppins', 'Mitr', sans-serif;
 }
 
+/* navbar */
+.navbar form {
+    margin-left: 10%;
+}
+
+/* heading */
 h1 {
     margin: 20px;
     text-align: center;
 }
 
+/* table */
 .table-container {
-    padding-top: 3%;
+    padding-top: 20px;
     padding-bottom: 5%;
 }
 
-/* table */
 #temp-table {
     width: 50%;
     margin: auto;

@@ -44,21 +44,24 @@ def addVocab(request):
 
         if not Vocab.objects.filter(Q(vocab_text=word)).exists(): # if it is new word
             # create word and meaning
-            newWord = Vocab.create(vocab_text=word)
-            newMeaning = Mean.create(vocab=newWord, type=word_type, means_text=meaning)
+            newWord = Vocab(vocab_text=word)
+            newMeaning = Mean(vocab=newWord, type=word_type, means_text=meaning)
+            newWord.save()
+            newMeaning.save()
             return render(request,'vocab/add.html',{
-                'success': f"Successful! '{word}' has been added."
+                'success': f"Successful ! '{word}' has been added."
             })
         else:
             # if not new word
             existsWord = Vocab.objects.get(vocab_text=word) # get word
 
             if not Mean.objects.filter(Q(vocab=existsWord) & Q(means_text=meaning)).exists(): # if not have meaning of this vocab
-                newMeaning = Mean.create(vocab=existsWord, type=word_type, means_text=meaning)
+                newMeaning = Mean(vocab=existsWord, type=word_type, means_text=meaning)
+                newMeaning.save()
                 return render(request,'vocab/add.html',{
                     'success': f"Successful! '{word}' has been added."
                 })
         
         return render(request,'vocab/add.html',{
-                    'failed': f"Oops! '{word}' already exists"
+                    'failed': f"Oops ! '{word}' already exists"
                 })

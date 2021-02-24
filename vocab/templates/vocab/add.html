@@ -1,25 +1,74 @@
 {% extends 'vocab/base.html' %}
+{% load static %}
+
+{% block title %}Vocabulary{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'vocab/css/add.css' %}">
+{% endblock %}
 
 {% block content %}
-    <h1>add vocabulary</h1>
-    {% if success %}
-        <div class="alert alert-success" role="alert">
-        {{ success }}
-        </div>
-    {% endif %}
-    {% if failed %}
-        <div class="alert alert-success" role="alert">
-        {{ failed }}
-        </div>
-    {% endif %}
-    <form action="" method="post">
-        {% csrf_token %}
-        <label for="">vocab</label>
-        <input type="text" name ="word_input">
-        <label for="">type</label>
-        <input type="text" name="type" >
-        <label for="">means</label>
-        <input type="text" name="meaning" >
-        <input type="submit" value="submit">
-    </form>
+<!-- navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'vocab:index' %}" data-abc="true">Vocabulary</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav me-5 mb-2 mb-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'vocab:index' %}" data-abc="true">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'vocab:add' %}" data-abc="true">Add vocab</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- heading -->
+<h1>Add Vocabulary</h1>
+
+<!-- success alert -->
+{% if success %}
+    <div class="alert alert-success" role="alert">
+    {{ success }}
+    </div>
+{% endif %}
+
+<!-- failed alert -->
+{% if failed %}
+    <div class="alert alert-danger" role="alert">
+    {{ failed }}
+    </div>
+{% endif %}
+
+<!-- form -->
+<div class="card">
+    <div class="card-body">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="WordInput" class="form-label">Word</label>
+                <input type="text" name ="word_input" id="WordInput" class="form-control" placeholder="Ex. rainbow">
+            </div>
+            <div class="mb-3">
+                <label for="Select" class="form-label">Select Type : </label>
+                <select id="Select" class="form-select" name="type">
+                    <option value="Noun">Noun [N]</option>
+                    <option value="Verb">Verb [V]</option>
+                    <option value="Adverb">Adverb [ADV]</option>
+                    <option value="Adjective">Adjective [ADJ]</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="MeaningInput" class="form-label">Meaning</label>
+                <input type="text" name ="meaning" id="MeaningInput" class="form-control" placeholder="Ex. รุ้ง">
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary w-100">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}

@@ -8,12 +8,27 @@
 {% endblock %}
 
 {% block content %}
+<!-- navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'vocab:index' %}" data-abc="true">Vocabulary</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav me-5 mb-2 mb-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'vocab:index' %}" data-abc="true">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'vocab:add' %}" data-abc="true">Add vocab</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
 <main>
     <div class="container">
-        <div class="heading">
-            <h1>Vocabulary</h1>
-        </div>
-
+        
         <!-- search box -->
         <div class="seach">
             <form action="{% url 'vocab:search' %}" method="get">
@@ -37,7 +52,7 @@
 
         <!-- Recently added vocab -->
         <div class="vocab-list">
-            <h2>Recently added vocabulary</h2>
+            <h3>Recently added vocabulary</h3>
             <div class="row">
                 {% if latest_vocab_list %}
 
