@@ -68,3 +68,9 @@ def addVocab(request):
         return render(request,'vocab/add.html',{
                     'failed': f"Oops ! '{word}' already exists"
                 })
+                
+def deleteVocab(request, vocab_id):
+    Vocab.objects.get(id=vocab_id).delete()
+    latest_vocab_list = Vocab.objects.order_by('-pub_date')[:5]
+    context = {'latest_vocab_list': latest_vocab_list}
+    return render(request, 'vocab/index.html', context)
