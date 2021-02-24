@@ -34,6 +34,11 @@ input.form-control:focus {
     background: none;
 }
 
+.error {
+    color: red;
+    margin-left: 20px;
+}
+
 /* vocab recently added */
 h2 {
     margin-top: 2rem;
@@ -45,6 +50,6 @@ a.item {
     color: #2D2D2D;
 }
 
-h4 {
+.card-body h4 {
     text-align: center;
 }

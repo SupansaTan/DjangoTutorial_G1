@@ -14,12 +14,13 @@
             <h1>Vocabulary</h1>
         </div>
 
+        <!-- search box -->
         <div class="seach">
-            <form action="{% url 'vocab:index' %}" method="post">
+            <form action="{% url 'vocab:search' %}" method="get">
                 {% csrf_token %}
                 <div class="input-group bg-white mb-4 border rounded-pill p-1 shadow-sm mb-4">
                     <div class="input-group">
-                        <input type="search" placeholder="Search" aria-describedby="button-addon1" class="form-control border-0">
+                        <input type="search" name="search_box" placeholder="Search" aria-describedby="button-addon1" class="form-control border-0">
                         <div class="input-group-append border-0">
                             <button id="button-addon1" type="submit" class="btn btn-link text-primary">
                                 <i class="fa fa-search"></i>
@@ -30,6 +31,12 @@
             </form>  
         </div>
 
+        <!-- if not found word after search -->
+        {% if error_message %}
+            <h5 class="error">{{ error_message }}</h5>
+        {% endif %}
+
+        <!-- Recently added vocab -->
         <div class="vocab-list">
             <h2>Recently added vocabulary</h2>
             <div class="row">

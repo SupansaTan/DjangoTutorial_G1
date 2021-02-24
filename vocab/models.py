@@ -13,7 +13,7 @@ class Vocab(models.Model):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 
 class Mean(models.Model):
-    vocab = models.ForeignKey(Vocab, on_delete=models.CASCADE)
+    vocab = models.ForeignKey(Vocab, related_name='meaning', on_delete=models.CASCADE)
     type = models.CharField(max_length=200)
     means_text = models.CharField(max_length=400)
 
