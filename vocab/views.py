@@ -11,14 +11,14 @@ def index(request):
 
 def search(request):
     search_text = request.GET.get('search_box')  # set search_text value from tag input
-    vocab_text = Vocab.objects.filter(Q(vocab_text__contains=search_text)) # get vocabs from database
+    vocab_text = Vocab.objects.filter(Q(vocab_text=search_text.lower())) # get vocabs from database
 
     if vocab_text.exists(): # if found vocab
         vocab = vocab_text[0]
         return HttpResponseRedirect(reverse('vocab:detail', args=(vocab.id,)))
     else:
         return render(request, 'vocab/index.html', {
-        'error_message': "Not Found",
+        'error_message': f"'{search_text}' not found.",
         'latest_vocab_list': Vocab.objects.order_by('-pub_date')[:5]
     })
 
@@ -33,5 +33,32 @@ def detail(request, vocab_id):
         'vocab': word
     })
 
-def addvocab(request):
-    return render(request, 'vocab/formadd.html')
+def addVocab(request):
+    if request.method == 'GET':
+        return render(request, 'vocab/add.html')
+
+    elif request.method == 'POST': # if submitted form
+        word = request.POST.get('word_input')
+        word_type = request.POST.get('type')
+        meaning = request.POST.get('meaning')
+
+        if not Vocab.objects.filter(Q(vocab_text=word)).exists(): # if it is new word
+            # create word and meaning
+            newWord = Vocab.create(vocab_text=word)
+            newMeaning = Mean.create(vocab=newWord, type=word_type, means_text=meaning)
+            return render(request,'vocab/add.html',{
+                'success': f"Successful! '{word}' has been added."
+            })
+        else:
+            # if not new word
+            existsWord = Vocab.objects.get(vocab_text=word) # get word
+
+            if not Mean.objects.filter(Q(vocab=existsWord) & Q(means_text=meaning)).exists(): # if not have meaning of this vocab
+                newMeaning = Mean.create(vocab=existsWord, type=word_type, means_text=meaning)
+                return render(request,'vocab/add.html',{
+                    'success': f"Successful! '{word}' has been added."
+                })
+        
+        return render(request,'vocab/add.html',{
+                    'failed': f"Oops! '{word}' already exists"
+                })

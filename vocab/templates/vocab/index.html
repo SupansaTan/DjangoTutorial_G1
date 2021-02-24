@@ -17,7 +17,6 @@
         <!-- search box -->
         <div class="seach">
             <form action="{% url 'vocab:search' %}" method="get">
-                {% csrf_token %}
                 <div class="input-group bg-white mb-4 border rounded-pill p-1 shadow-sm mb-4">
                     <div class="input-group">
                         <input type="search" name="search_box" placeholder="Search" aria-describedby="button-addon1" class="form-control border-0">

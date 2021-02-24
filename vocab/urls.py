@@ -6,6 +6,6 @@ app_name = 'vocab'
 urlpatterns = [
     path('', views.index, name='index'),
     path('<int:vocab_id>/', views.detail, name='detail'),
-    path('add/', views.addvocab, name='add'),
+    path('add/', views.addVocab, name='add'),
     path('search/', views.search, name='search')
 ]
