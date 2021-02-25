@@ -47,5 +47,7 @@
         {% endfor %}
     </table>
 </div>
-<a href="{% url 'vocab:delete' vocab.id %}">delete_vocab</a>
+<div class="delete_vocab">
+    <a href="{% url 'vocab:delete' vocab.id %}">Delete this vocab</a>
+</div>
 {% endblock %}

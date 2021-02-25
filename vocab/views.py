@@ -27,8 +27,8 @@ def search(request):
 
 def detail(request, vocab_id):
     word = Vocab.objects.get(pk=vocab_id)
-    word_type = word.meaning.get(pk=vocab_id).type
-    word_mean = word.meaning.get(pk=vocab_id).means_text
+    word_type = word.get_type()
+    word_mean = word.get_meaning()
     vocab_detail = [{'vocab_text':word.vocab_text, 'vocab_type':word_type, 'vocab_mean':word_mean}]
 
     return render(request, 'vocab/detail.html', {
@@ -41,9 +41,9 @@ def addVocab(request):
         return render(request, 'vocab/add.html')
 
     elif request.method == 'POST': # if submitted form
-        word = request.POST.get('word_input')
+        word = request.POST.get('word_input').strip()
         word_type = request.POST.get('type')
-        meaning = request.POST.get('meaning')
+        meaning = request.POST.get('meaning').strip()
 
         if not Vocab.objects.filter(Q(vocab_text=word)).exists(): # if it is new word
             # create word and meaning
@@ -71,6 +71,4 @@ def addVocab(request):
                 
 def deleteVocab(request, vocab_id):
     Vocab.objects.get(id=vocab_id).delete()
-    latest_vocab_list = Vocab.objects.order_by('-pub_date')[:5]
-    context = {'latest_vocab_list': latest_vocab_list}
-    return render(request, 'vocab/index.html', context)
+    return HttpResponseRedirect('/vocab/')

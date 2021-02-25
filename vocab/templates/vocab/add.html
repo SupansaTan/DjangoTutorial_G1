@@ -50,11 +50,12 @@
             {% csrf_token %}
             <div class="mb-3">
                 <label for="WordInput" class="form-label">Word</label>
-                <input type="text" name ="word_input" id="WordInput" class="form-control" placeholder="Ex. rainbow">
+                <input type="text" name ="word_input" id="WordInput" class="form-control" placeholder="Ex. rainbow" required>
             </div>
             <div class="mb-3">
                 <label for="Select" class="form-label">Select Type : </label>
-                <select id="Select" class="form-select" name="type">
+                <select id="Select" class="form-select" name="type" required>
+                    <option selected disabled value="">Choose...</option>
                     <option value="Noun">Noun [N]</option>
                     <option value="Verb">Verb [V]</option>
                     <option value="Adverb">Adverb [ADV]</option>
@@ -63,7 +64,7 @@
             </div>
             <div class="mb-3">
                 <label for="MeaningInput" class="form-label">Meaning</label>
-                <input type="text" name ="meaning" id="MeaningInput" class="form-control" placeholder="Ex. รุ้ง">
+                <input type="text" name ="meaning" id="MeaningInput" class="form-control" placeholder="Ex. รุ้ง" required>
             </div>
             <div class="text-center">
                 <button type="submit" class="btn btn-primary w-100">Submit</button>

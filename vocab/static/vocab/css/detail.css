@@ -62,3 +62,8 @@ h1 {
 .column2 {
     width: 3%;
 }
+
+/* delete vocab */
+.delete_vocab {
+    text-align: center;
+}
