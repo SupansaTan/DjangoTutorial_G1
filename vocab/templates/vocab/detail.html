@@ -8,6 +8,7 @@
 {% endblock %}
 
 {% block content %}
+<!-- navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="{% url 'vocab:index' %}" data-abc="true">Vocabulary</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,8 +29,11 @@
         </form>
     </div>
 </nav>
-  
+
+<!-- heading -->
 <h1>{{ vocab.vocab_text }}</h1>
+
+<!-- detail table -->
 <div class="table-container">
     <table id="temp-table">
         <tr>
@@ -47,6 +51,8 @@
         {% endfor %}
     </table>
 </div>
+
+<!-- delete vocab -->
 <div class="delete_vocab">
     <a href="{% url 'vocab:delete' vocab.id %}">Delete this vocab</a>
 </div>
