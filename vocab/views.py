@@ -80,3 +80,35 @@ def addVocab(request):
 def deleteVocab(request, vocab_id):
     Vocab.objects.get(id=vocab_id).delete() # delete vocab
     return HttpResponseRedirect('/vocab/') # redirect to index page
+
+def edit(request, vocab_id):
+    vocab = Vocab.objects.get(id=vocab_id)
+
+    if request.method == 'GET':
+        vocab_text = vocab.vocab_text
+        vocab_type = vocab.get_type
+        vocab_meaning = vocab.get_meaning
+        return render(request, 'vocab/edit.html', {
+            'vocab': vocab_text,
+            'vocab_type': vocab_type,
+            'vocab_meanning': vocab_meaning
+        })
+
+    elif request.method == 'POST':
+        new_vocab = request.POST.get('vocab_input', 'None').strip()
+        new_type = request.POST.get('type_input', 'None')
+        new_meanning = request.POST.get('meanning_input', 'None').strip()
+
+        if new_vocab != 'None' and new_vocab != "":
+            vocab.vocab_text =  new_vocab
+            vocab.save()
+        
+        if new_type != 'None':
+            vocab.meaning.get(id=vocab_id).type = new_type
+            vocab.save()
+
+        if new_meanning != 'None' and new_vocab != "":
+            vocab.meaning.get(id=vocab_id).means_text = new_meanning
+            vocab.save()
+        
+        return redirect(f'/vocab/{vocab_id}')

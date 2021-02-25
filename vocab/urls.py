@@ -8,5 +8,6 @@ urlpatterns = [
     path('<int:vocab_id>/', views.detail, name='detail'),
     path('add/', views.addVocab, name='add'),
     path('result/', views.search, name='search'),
-    path('delete/<int:vocab_id>/', views.deleteVocab, name='delete')
+    path('delete/<int:vocab_id>/', views.deleteVocab, name='delete'),
+    path('<int:vocab_id>/edit', views.edit, name='edit')
 ]

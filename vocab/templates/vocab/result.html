@@ -44,7 +44,11 @@
 
         {% for vocab in vocab_list %}
         <tr>
-            <td class="column1">{{ vocab.vocab_text }}</td>
+            <td class="column1">
+                <a href="{% url 'vocab:detail' vocab.id %}">
+                    {{ vocab.vocab_text }}
+                </a>
+            </td>
             <td class="column2">{{ vocab.get_type }}</td>
             <td class="column3">{{ vocab.get_meaning }}</td>
         </tr>

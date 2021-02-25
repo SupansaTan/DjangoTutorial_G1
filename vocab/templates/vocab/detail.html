@@ -54,6 +54,15 @@
 
 <!-- delete vocab -->
 <div class="delete_vocab">
-    <a href="{% url 'vocab:delete' vocab.id %}">Delete this vocab</a>
+    <a href="{% url 'vocab:delete' vocab.id %}">
+        <button>Delete this vocab</button>
+    </a>
+</div>
+
+<!-- edit vocab -->
+<div class="edit_vocab">
+    <a href="{% url 'vocab:edit' vocab.id %}">
+        <button>Edit this vocab</button>
+    </a>
 </div>
 {% endblock %}
