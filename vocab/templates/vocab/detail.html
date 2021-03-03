@@ -41,13 +41,14 @@
             <th class="column2">Type</th>
             <th class="column3">Meaning</th>
         </tr>
-
-        {% for vocab in vocabulary %}
-        <tr>
-            <td class="column1">{{ vocab.vocab_text }}</td>
-            <td class="column2">{{ vocab.vocab_type }}</td>
-            <td class="column3">{{ vocab.vocab_mean }}</td>
-        </tr>
+        {% for v in vocabulary %}
+            {% for i in v.vocab_mean %}
+                    <tr>
+                        <td class="column1">{{ vocab.vocab_text }}</td>
+                        <td class="column2">{{ i.type }}</td>
+                        <td class="column3">{{ i.means_text }}</td></tr>
+                    </tr>
+            {% endfor %}
         {% endfor %}
     </table>
 </div>
