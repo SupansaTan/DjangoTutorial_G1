@@ -13,13 +13,9 @@ class Vocab(models.Model):
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 
-    def get_meaning(self):
-        meaning_list = list(self.meaning.filter(vocab=self.id).distinct())
+    def get_meaning_type(self):
+        meaning_list = list(self.meaning.filter(vocab=self.id))
         return meaning_list
-
-    def get_type(self):
-        type_list = list(self.meaning.filter(vocab=self.id).distinct())
-        return type_list 
 
 class Mean(models.Model):
     vocab = models.ForeignKey(

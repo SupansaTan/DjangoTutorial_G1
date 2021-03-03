@@ -43,15 +43,15 @@
         </tr>
 
         {% for vocab in vocab_list %}
-            {% for i in vocab.get_meaning %}
+            {% for v in vocab.get_meaning_type %}
             <tr>
                 <td class="column1">
                     <a href="{% url 'vocab:detail' vocab.id %}">
                         {{ vocab.vocab_text }}
                     </a>
                 </td>
-                <td class="column2">{{ i.type }}</td>
-                <td class="column3">{{ i.means_text }}</td>
+                <td class="column2">{{ v.type }}</td>
+                <td class="column3">{{ v.means_text }}</td>
             </tr>
              
             {% endfor %}

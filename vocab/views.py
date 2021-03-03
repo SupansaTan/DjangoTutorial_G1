@@ -29,16 +29,16 @@ def search(request): # when submitted search button
 def detail(request, vocab_id): # show detail about that vocab
     # get detail
     word = Vocab.objects.get(pk=vocab_id)
-    word_type = word.get_type()
-    word_mean = word.get_meaning()
-    vocab_detail = [{'vocab_text':word.vocab_text, 'vocab_type':word_type, 'vocab_mean':word_mean}]
+    word_mean = word.get_meaning_type()
+    vocab_detail = [{'vocab_text':word.vocab_text, 'vocab_mean':word_mean}]
 
     return render(request, 'vocab/detail.html', {
         'vocabulary': vocab_detail,
         'vocab': word
     })
-
+    
 def addVocab(request):
+            
     if request.method == 'GET': # show form input
         return render(request, 'vocab/add.html')
 
