@@ -81,9 +81,9 @@ def deleteVocab(request, vocab_id):
     Vocab.objects.get(id=vocab_id).delete() # delete vocab
     return HttpResponseRedirect('/vocab/') # redirect to index page
 
-def edit(request, vocab_id):
+def edit(request, vocab_id): 
     vocab = Vocab.objects.get(id=vocab_id)
-
+    # edit vocab
     if request.method == 'GET':
         vocab_text = vocab.vocab_text
         vocab_type = vocab.get_type
@@ -111,4 +111,4 @@ def edit(request, vocab_id):
             vocab.meaning.get(id=vocab_id).means_text = new_meanning
             vocab.save()
         
-        return redirect(f'/vocab/{vocab_id}')
+        return redirect(f'/vocab/{vocab_id}') #return to index
