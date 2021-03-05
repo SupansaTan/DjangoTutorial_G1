@@ -86,8 +86,8 @@ def edit(request, vocab_id):
     # edit vocab
     if request.method == 'GET':
         vocab_text = vocab.vocab_text
-        vocab_type = vocab.get_type
-        vocab_meaning = vocab.get_meaning
+        vocab_type = vocab.meaning.get(id=vocab_id).type
+        vocab_meaning = vocab.meaning.get(id=vocab_id).means_text
         return render(request, 'vocab/edit.html', {
             'vocab': vocab_text,
             'vocab_type': vocab_type,
