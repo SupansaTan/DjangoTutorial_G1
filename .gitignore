@@ -1,0 +1,8 @@
+*.xml
+*.pyc
+*.sqlite3
+*.iml
+*.dump
+
+vocab/migrations/
+polls/migrations/

@@ -1,0 +1,29 @@
+{% extends 'polls/base.html' %}
+{% load static %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<main>
+<div class="inner-wrapper">
+    <div class="heading">
+        <h1>Choose Apps</h1>
+    </div>
+    <div class="link-app">
+        <a href="{% url 'polls:index' %}" class="item" title="polls">
+            <h2>Polls</h2>
+        </a>
+    </div>
+    <div class="link-app">
+        <a href="{% url 'vocab:index' %}" class="item" title="vocab">
+            <h2>Vocab</h2>
+        </a>
+    </div>
+</div>
+</main>
+
+{% endblock %}

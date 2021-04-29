@@ -36,6 +36,9 @@ class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
 
+def home(request):
+    return render(request, 'polls/home.html')
+    
 def index(request):
     sort = request.GET.get('sort','default')
     reverse = bool(int(request.GET.get('reverse',0))) # 0: reverse = true, 1: reverse = false
